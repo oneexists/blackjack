@@ -1,0 +1,71 @@
+Card:
+	int rank
+	int suit
+	String[] RANKS
+	String[] SUITS
+
+	Card constructor (int rank, int suit)
+	toString method for displaying name of card
+
+	Card has the properties of RANKS[rank] and SUITS[suit]
+	rank will define value
+	low ace will be at RANKS[1]
+	high ace will be at RANKS[14] and have a value of 11 in the hand
+	RANKS[11, 12, 13, 14] will return a value of 10 in the hand
+Deck:
+	CARDS = 52
+	dealPile
+	activePile
+	
+	shuffle
+		shuffle cards
+		add all cards to dealPile
+		activePile is empty
+	dealGame (initial hand)
+		deals two cards to DealerHand and two cards to PlayerHand
+	dealCard
+		deals a card to PlayerHand
+	aceValue
+		determines ace value at 1 or 11
+DealerHand:
+	value
+	hand
+	
+	evaluateHand
+		playHand (hit/fold)
+		if hand has an ace: aceValue method
+		update value
+PlayerHand:
+	i (holds number of hands)
+	value
+	value_i
+	hand
+	hand_i
+	
+	evaluateHand
+		if hand has an ace: aceValue method
+		if hand can split: increment i, create new hand using
+			value_i and hand_i
+		update value
+		run splitHand if hand is split
+
+	playHand
+		dealCard method
+		hit or fold
+			if hit
+				dealCard method
+				evaluate PlayerHand's hand using evaluateHand method
+				evaluate DealerHand's hand using evaluateHand method
+			if fold
+				compare DealerHand's value to PlayerHand's value
+				keepPlaying is false
+				display winner
+				play again?
+	splitHand
+		evaluates hand_i and value_i for all split hands
+
+boolean keepPlaying
+
+shuffle cards
+deal cards
+playHand method while keepPlaying is true
